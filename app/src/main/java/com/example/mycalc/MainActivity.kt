@@ -33,10 +33,15 @@ class MainActivity : AppCompatActivity() {
             str = str + view.tag
             result_text.text=str
         }
-        if (result_text.text.toString().toDouble() != null)
+        if (result_text.text.toString().toDouble() != null && view.tag in 1..9)
         {
             FirstNum = result_text.text.toString().toDouble()
         }
+        if (view.tag == "10" && IsNull == false){
+            result_text.text = "."
+            IsNull = true
+        }
+
     }
 
     fun Ops(view: View){
@@ -74,7 +79,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 else
                 {
-                    result_text.text = (FirstNum/SecondNum).toString()
+                    result_text.text = (SecondNum/FirstNum).toString()
                 }
             }
             else if (Operation == 14)
@@ -99,6 +104,7 @@ class MainActivity : AppCompatActivity() {
             FirstNum=0.0
             Operation=0
         }
+
 
     }
 

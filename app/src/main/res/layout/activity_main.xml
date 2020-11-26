@@ -161,11 +161,11 @@
                 />
 
             <TextView
+                android:id="@+id/dot"
                 style="@style/ActionButton"
-                android:text="."
+                android:onClick="DigitsTag"
                 android:tag="10"
-                android:onClick="Ops"
-                />
+                android:text="." />
             <TextView
                 style="@style/NumberButton"
                 android:text="="
