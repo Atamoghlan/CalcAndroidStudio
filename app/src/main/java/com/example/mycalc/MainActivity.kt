@@ -36,9 +36,10 @@ class MainActivity : AppCompatActivity() {
                 result_text.text = str
                 IsNull == true
             }
-            else if (IsNull == true && view.tag in 0..9 && DotExist == false)
+            else if (result_text.text.contains("0"))
             {
-                result_text.text = "Error"
+                str = view.tag.toString()
+                result_text.text = str
             }
             else {
                 str += view.tag.toString()
@@ -60,9 +61,10 @@ class MainActivity : AppCompatActivity() {
                 result_text.text = str
                 IsNull == true
             }
-            else if (IsNull == true && view.tag in 0..9 && DotExist == false)
+            else if (result_text.text.contains("0"))
             {
-                result_text.text = "Error"
+                str = view.tag.toString()
+                result_text.text = str
             }
             else {
                 str += view.tag.toString()
