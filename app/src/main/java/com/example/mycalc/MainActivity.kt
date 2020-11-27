@@ -33,35 +33,34 @@ class MainActivity : AppCompatActivity() {
         plus_button = findViewById(R.id.plus)
         minus_button = findViewById(R.id.minus)
         multiply_button = findViewById(R.id.multiply)
-
-
-
     }
-
-
     fun DigitsTag(view: View){
         if (MathSign == true)
         {
             str=""
-            if (view.tag == "10" && DotExist == false){ //сюда заходит при первом числе
+            if (view.tag == "10" && DotExist == false && DotExist == false){ //сюда заходит при первом числе
                 str += "."
                 result_text.text = str
-                DotExist == true
+                DotExist = true
+                NumExist = true
             }
             else if(IsNull == false && view.tag == "0")
             {
                 str += view.tag.toString()
                 result_text.text = str
-                IsNull == true
+                IsNull = true
+                NumExist = true
             }
             else if (result_text.text.contains("0"))
             {
                 str = view.tag.toString()
                 result_text.text = str
+                NumExist = true
             }
-            else {
+            else if (view.tag != "10" && view.tag != "0"){
                 str += view.tag.toString()
                 result_text.text = str
+                NumExist = true
                 MathSign = false
             }
             SecondNum = result_text.text.toString().toDouble()
@@ -71,14 +70,14 @@ class MainActivity : AppCompatActivity() {
             {
                 str += "."
                 result_text.text = str
-                DotExist == true
+                DotExist = true
                 NumExist = true
             }
             else if(IsNull == false && view.tag == "0")
             {
                 str += view.tag.toString()
                 result_text.text = str
-                IsNull == true
+                IsNull = true
                 NumExist = true
             }
             else if (result_text.text.contains("0"))
@@ -87,7 +86,7 @@ class MainActivity : AppCompatActivity() {
                 result_text.text = str
                 NumExist = true
             }
-            else {
+            else if (view.tag != "10" && view.tag != "0"){
                 str += view.tag.toString()
                 result_text.text = str
                 NumExist = true
