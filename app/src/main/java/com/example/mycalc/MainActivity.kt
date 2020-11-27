@@ -21,10 +21,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun DigitsTag(view: View){
-
-
-        if (MathSign == true
-        ){
+        if (MathSign == true)
+        {
             str=view.tag.toString()
             result_text.text = str
             MathSign = false
@@ -33,21 +31,18 @@ class MainActivity : AppCompatActivity() {
             str = str + view.tag
             result_text.text=str
         }
-        if (result_text.text.toString().toDouble() != null && view.tag in 1..9)
-        {
-            FirstNum = result_text.text.toString().toDouble()
-        }
+
         if (view.tag == "10" && IsNull == false){
             result_text.text = "."
             IsNull = true
         }
-
+        SecondNum = result_text.text.toString().toDouble()
     }
 
     fun Ops(view: View){
         if (result_text.text != "" && view.tag!= "10" && view.tag!= "11" && view.tag!= "16"){
 
-            SecondNum = result_text.text.toString().toDouble()
+            FirstNum = result_text.text.toString().toDouble()
             if (view.tag == "12")
             {
                 result_text.text = "+"
@@ -79,20 +74,20 @@ class MainActivity : AppCompatActivity() {
                 }
                 else
                 {
-                    result_text.text = (SecondNum/FirstNum).toString()
+                    result_text.text = (FirstNum/SecondNum).toString()
                 }
             }
             else if (Operation == 14)
             {
-                result_text.text = (SecondNum*FirstNum).toString()
+                result_text.text = (FirstNum*SecondNum).toString()
             }
             else if (Operation == 13)
             {
-                result_text.text = (SecondNum-FirstNum).toString()
+                result_text.text = (FirstNum-SecondNum).toString()
             }
             else if (Operation == 12)
             {
-                result_text.text = (SecondNum+FirstNum).toString()
+                result_text.text = (FirstNum+SecondNum).toString()
             }
             FirstNum = result_text.text.toString().toDouble()
             SecondNum = 0.0
