@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
     private var str: String = ""
     private var Operation: Int = 0
     private var IsNull = false
+    private var DotExist = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -23,20 +24,33 @@ class MainActivity : AppCompatActivity() {
     fun DigitsTag(view: View){
         if (MathSign == true)
         {
-            str=view.tag.toString()
+            if (view.tag == "10" && IsNull == false && DotExist == false){ //сюда заходит при первом числе
+                str += "."
+                result_text.text = str
+                IsNull = true
+                DotExist == true
+            }
+            str+=view.tag.toString()
             result_text.text = str
             MathSign = false
+            SecondNum = result_text.text.toString().toDouble()
+            str = ""
         }
-        else {
-            str = str + view.tag
+        else { //сюда заходит при числе числе
+            if (view.tag == "10" && IsNull == false && DotExist == false){
+
+                str += "."
+                result_text.text = str
+                IsNull = true
+            }
+            str += view.tag.toString()
             result_text.text=str
+            SecondNum = result_text.text.toString().toDouble()
+            str = ""
         }
 
-        if (view.tag == "10" && IsNull == false){
-            result_text.text = "."
-            IsNull = true
-        }
-        SecondNum = result_text.text.toString().toDouble()
+
+
     }
 
     fun Ops(view: View){
@@ -91,6 +105,7 @@ class MainActivity : AppCompatActivity() {
             }
             FirstNum = result_text.text.toString().toDouble()
             SecondNum = 0.0
+            str == ""
         }
         else if (view.tag == "16")
         {
@@ -98,6 +113,10 @@ class MainActivity : AppCompatActivity() {
             SecondNum=0.0
             FirstNum=0.0
             Operation=0
+            str = ""
+            MathSign = false
+            IsNull = false
+            DotExist = false
         }
 
 
