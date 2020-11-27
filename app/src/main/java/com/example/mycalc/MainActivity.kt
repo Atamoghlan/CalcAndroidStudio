@@ -24,29 +24,51 @@ class MainActivity : AppCompatActivity() {
     fun DigitsTag(view: View){
         if (MathSign == true)
         {
-            if (view.tag == "10" && IsNull == false && DotExist == false){ //сюда заходит при первом числе
+            str=""
+            if (view.tag == "10" && DotExist == false){ //сюда заходит при первом числе
                 str += "."
                 result_text.text = str
-                IsNull = true
                 DotExist == true
             }
-            str+=view.tag.toString()
-            result_text.text = str
-            MathSign = false
+            else if(IsNull == false && view.tag == "0")
+            {
+                str += view.tag.toString()
+                result_text.text = str
+                IsNull == true
+            }
+            else if (IsNull == true && view.tag in 0..9 && DotExist == false)
+            {
+                result_text.text = "Error"
+            }
+            else {
+                str += view.tag.toString()
+                result_text.text = str
+                MathSign = false
+            }
             SecondNum = result_text.text.toString().toDouble()
-            str = ""
         }
         else { //сюда заходит при числе числе
-            if (view.tag == "10" && IsNull == false && DotExist == false){
-
+            if (view.tag == "10" && IsNull == false && DotExist == false)
+            {
                 str += "."
                 result_text.text = str
-                IsNull = true
+                DotExist == true
             }
-            str += view.tag.toString()
-            result_text.text=str
+            else if(IsNull == false && view.tag == "0")
+            {
+                str += view.tag.toString()
+                result_text.text = str
+                IsNull == true
+            }
+            else if (IsNull == true && view.tag in 0..9 && DotExist == false)
+            {
+                result_text.text = "Error"
+            }
+            else {
+                str += view.tag.toString()
+                result_text.text = str
+            }
             SecondNum = result_text.text.toString().toDouble()
-            str = ""
         }
 
 
