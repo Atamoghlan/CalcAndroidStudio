@@ -122,7 +122,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun Ops(view: View){
-        if (result_text.text != "" && view.tag!= "10" && view.tag!= "11" && view.tag!= "16" && !PlusExist && !MinusExist && !MultiplyExist && !DivisionExist && DividedByZero == false){
+        if (result_text.text != "" && view.tag!= "10" && view.tag!= "11" && view.tag!= "16" && !PlusExist && !MinusExist && !MultiplyExist && !DivisionExist && DividedByZero == false && NumExist == true){
             DotExist = true
             IsNull = false
             str=""
