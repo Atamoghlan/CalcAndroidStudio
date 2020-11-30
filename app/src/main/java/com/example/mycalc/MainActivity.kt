@@ -138,23 +138,23 @@ class MainActivity : AppCompatActivity() {
                 }
                 else
                 {
-                    result_text.text = (FirstNum/SecondNum).toString()
+                    result_text.text = ("%.5f".format((FirstNum/SecondNum))).toString()
 
                 }
             }
             else if (Operation == 14 )
             {
-                result_text.text = (FirstNum*SecondNum).toString()
+                result_text.text = ("%.5f".format((FirstNum*SecondNum))).toString()
 
             }
             else if (Operation == 13 )
             {
-                result_text.text = (FirstNum-SecondNum).toString()
+                result_text.text = ("%.5f".format((FirstNum-SecondNum))).toString()
 
             }
             else if (Operation == 12)
             {
-                result_text.text = (FirstNum+SecondNum).toString()
+                result_text.text = ("%.5f".format((FirstNum+SecondNum))).toString()
 
             }
             FirstNum = result_text.text.toString().toDouble()
