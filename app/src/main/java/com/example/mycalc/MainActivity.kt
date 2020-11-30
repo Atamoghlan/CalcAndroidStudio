@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private var NumExist = false
     private var NullAndDot = false
     private var EqualWork = false
+    private var DividedByZero = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -121,7 +122,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun Ops(view: View){
-        if (result_text.text != "" && view.tag!= "10" && view.tag!= "11" && view.tag!= "16" && !PlusExist && !MinusExist && !MultiplyExist && !DivisionExist){
+        if (result_text.text != "" && view.tag!= "10" && view.tag!= "11" && view.tag!= "16" && !PlusExist && !MinusExist && !MultiplyExist && !DivisionExist && DividedByZero == false){
             DotExist = true
             IsNull = false
             str=""
@@ -164,28 +165,30 @@ class MainActivity : AppCompatActivity() {
                 if (FirstNum == 0.0)
                 {
                     result_text.text = ("Error").toString()
+                    DividedByZero = true
                 }
                 else
                 {
                     result_text.text = ("%.3f".format((FirstNum/SecondNum))).toString()
+                    FirstNum = result_text.text.toString().toDouble()
                 }
             }
             else if (Operation == 14 )
             {
                 result_text.text = ("%.3f".format((FirstNum*SecondNum))).toString()
-
+                FirstNum = result_text.text.toString().toDouble()
             }
             else if (Operation == 13 )
             {
                 result_text.text = ("%.3f".format((FirstNum-SecondNum))).toString()
-
+                FirstNum = result_text.text.toString().toDouble()
             }
             else if (Operation == 12)
             {
                 result_text.text = ("%.3f".format((FirstNum+SecondNum))).toString()
-
+                FirstNum = result_text.text.toString().toDouble()
             }
-            FirstNum = result_text.text.toString().toDouble()
+
             SecondNum = 0.0
             str = ""
             DotExist = true
@@ -213,6 +216,7 @@ class MainActivity : AppCompatActivity() {
             MultiplyExist = false
             NumExist = false
             EqualWork = false
+            DividedByZero = false
         }
 
 
