@@ -17,13 +17,13 @@ class MainActivity : AppCompatActivity() {
     private var str: String = ""
     private var Operation: Int = 0
     private var IsNull = false
-    private var DotExist = false
+    private var DotExist = true
     private var PlusExist = false
     private var MinusExist = false
     private var DivisionExist = false
     private var MultiplyExist = false
     private var NumExist = false
-
+    private var NullAndDot = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,41 +37,62 @@ class MainActivity : AppCompatActivity() {
     fun DigitsTag(view: View){
         if (MathSign == true)
         {
-            str=""
-            if (view.tag == "10" && DotExist == false && NumExist == true){ //сюда заходит при втором числе
+
+            if (view.tag == "10" && DotExist == false && NumExist == true && IsNull == false){ //сюда заходит при втором числе
                 str += "."
                 result_text.text = str
                 DotExist = true
                 NumExist = false
             }
+            else if (view.tag == "10" && DotExist == false && NumExist == true && IsNull == true){ //сюда заходит при втором числе
+                str += "."
+                result_text.text = str
+                DotExist = true
+                NumExist = false
+                IsNull = false
+                NullAndDot = true
+            }
+
             else if(IsNull == false && view.tag == "0")
             {
                 str += view.tag.toString()
                 result_text.text = str
                 IsNull = true
                 NumExist = true
+                DotExist = false
             }
-            else if (result_text.text.contains("0"))
+            else if (IsNull == true && NullAndDot == false && view.tag != "10")
             {
                 str = view.tag.toString()
                 result_text.text = str
                 NumExist = true
+                DotExist = false
             }
             else if (view.tag != "10" && view.tag != "0"){
                 str += view.tag.toString()
                 result_text.text = str
                 NumExist = true
                 MathSign = false
+                DotExist = false
             }
-            SecondNum = result_text.text.toString().toDouble()
+
         }
         else { //сюда заходит при первом числе числе
-            if (view.tag == "10" && NumExist == true && DotExist == false)
+            if (view.tag == "10" && NumExist == true && DotExist == false && IsNull == false)
             {
                 str += "."
                 result_text.text = str
                 DotExist = true
                 NumExist = false
+
+            }
+            else if (view.tag == "10" && DotExist == false && NumExist == true && IsNull == true){ //сюда заходит при втором числе
+                str += "."
+                result_text.text = str
+                DotExist = true
+                NumExist = false
+                IsNull = false
+                NullAndDot = true
             }
             else if(IsNull == false && view.tag == "0")
             {
@@ -79,25 +100,30 @@ class MainActivity : AppCompatActivity() {
                 result_text.text = str
                 IsNull = true
                 NumExist = true
+                DotExist = false
             }
-            else if (result_text.text.contains("0"))
+            else if (IsNull == true && NullAndDot == false && view.tag != "10")
             {
                 str = view.tag.toString()
                 result_text.text = str
                 NumExist = true
+                DotExist = false
             }
             else if (view.tag != "10" && view.tag != "0"){
                 str += view.tag.toString()
                 result_text.text = str
                 NumExist = true
+                DotExist = false
             }
-            SecondNum = result_text.text.toString().toDouble()
+            //SecondNum = result_text.text.toString().toDouble()
         }
     }
 
     fun Ops(view: View){
         if (result_text.text != "" && view.tag!= "10" && view.tag!= "11" && view.tag!= "16" && !PlusExist && !MinusExist && !MultiplyExist && !DivisionExist){
-            DotExist = false
+            DotExist = true
+            IsNull = false
+            str=""
             FirstNum = result_text.text.toString().toDouble()
             if (view.tag == "12" && NumExist === true)
             {
@@ -131,6 +157,7 @@ class MainActivity : AppCompatActivity() {
         }
         else if (view.tag == "11")
         {
+            SecondNum = result_text.text.toString().toDouble()
             if (Operation == 15)
             {
                 if (FirstNum == 0.0)
@@ -140,7 +167,6 @@ class MainActivity : AppCompatActivity() {
                 else
                 {
                     result_text.text = ("%.3f".format((FirstNum/SecondNum))).toString()
-
                 }
             }
             else if (Operation == 14 )
@@ -161,12 +187,13 @@ class MainActivity : AppCompatActivity() {
             FirstNum = result_text.text.toString().toDouble()
             SecondNum = 0.0
             str = ""
-            DotExist = false
+            DotExist = true
             PlusExist = false
             MinusExist = false
             DivisionExist = false
             MultiplyExist = false
             NumExist = true
+            IsNull = false
         }
         else if (view.tag == "16")
         {
@@ -177,11 +204,12 @@ class MainActivity : AppCompatActivity() {
             str = ""
             MathSign = false
             IsNull = false
-            DotExist = false
+            DotExist = true
             PlusExist = false
             MinusExist = false
             DivisionExist = false
             MultiplyExist = false
+            NumExist = false
         }
 
 
