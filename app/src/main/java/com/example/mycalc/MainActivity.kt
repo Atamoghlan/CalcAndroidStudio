@@ -38,11 +38,11 @@ class MainActivity : AppCompatActivity() {
         if (MathSign == true)
         {
             str=""
-            if (view.tag == "10" && DotExist == false && DotExist == false){ //сюда заходит при втором числе
+            if (view.tag == "10" && DotExist == false && NumExist == true){ //сюда заходит при втором числе
                 str += "."
                 result_text.text = str
                 DotExist = true
-                NumExist = true
+                NumExist = false
             }
             else if(IsNull == false && view.tag == "0")
             {
@@ -66,12 +66,12 @@ class MainActivity : AppCompatActivity() {
             SecondNum = result_text.text.toString().toDouble()
         }
         else { //сюда заходит при первом числе числе
-            if (view.tag == "10" && IsNull == false && DotExist == false)
+            if (view.tag == "10" && NumExist == true && DotExist == false)
             {
                 str += "."
                 result_text.text = str
                 DotExist = true
-                NumExist = true
+                NumExist = false
             }
             else if(IsNull == false && view.tag == "0")
             {
@@ -97,13 +97,14 @@ class MainActivity : AppCompatActivity() {
 
     fun Ops(view: View){
         if (result_text.text != "" && view.tag!= "10" && view.tag!= "11" && view.tag!= "16" && !PlusExist && !MinusExist && !MultiplyExist && !DivisionExist){
-
+            DotExist = false
             FirstNum = result_text.text.toString().toDouble()
             if (view.tag == "12" && NumExist === true)
             {
                 result_text.text = "+"
                 PlusExist = true
                 NumExist = false
+
             }
             else if (view.tag == "13" && NumExist === true)
             {
@@ -138,23 +139,23 @@ class MainActivity : AppCompatActivity() {
                 }
                 else
                 {
-                    result_text.text = ("%.5f".format((FirstNum/SecondNum))).toString()
+                    result_text.text = ("%.3f".format((FirstNum/SecondNum))).toString()
 
                 }
             }
             else if (Operation == 14 )
             {
-                result_text.text = ("%.5f".format((FirstNum*SecondNum))).toString()
+                result_text.text = ("%.3f".format((FirstNum*SecondNum))).toString()
 
             }
             else if (Operation == 13 )
             {
-                result_text.text = ("%.5f".format((FirstNum-SecondNum))).toString()
+                result_text.text = ("%.3f".format((FirstNum-SecondNum))).toString()
 
             }
             else if (Operation == 12)
             {
-                result_text.text = ("%.5f".format((FirstNum+SecondNum))).toString()
+                result_text.text = ("%.3f".format((FirstNum+SecondNum))).toString()
 
             }
             FirstNum = result_text.text.toString().toDouble()
