@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         if (MathSign == true)
         {
             str=""
-            if (view.tag == "10" && DotExist == false && DotExist == false){ //сюда заходит при первом числе
+            if (view.tag == "10" && DotExist == false && DotExist == false){ //сюда заходит при втором числе
                 str += "."
                 result_text.text = str
                 DotExist = true
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
             }
             SecondNum = result_text.text.toString().toDouble()
         }
-        else { //сюда заходит при втором числе числе
+        else { //сюда заходит при первом числе числе
             if (view.tag == "10" && IsNull == false && DotExist == false)
             {
                 str += "."
