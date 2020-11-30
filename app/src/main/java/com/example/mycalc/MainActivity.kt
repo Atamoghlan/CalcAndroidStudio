@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private var MultiplyExist = false
     private var NumExist = false
     private var NullAndDot = false
+    private var EqualWork = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +45,7 @@ class MainActivity : AppCompatActivity() {
                 DotExist = true
                 NumExist = false
             }
-            else if (view.tag == "10" && DotExist == false && NumExist == true && IsNull == true){ //сюда заходит при втором числе
+            else if (view.tag == "10" && DotExist == false && NumExist == true && IsNull == true){
                 str += "."
                 result_text.text = str
                 DotExist = true
@@ -75,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                 MathSign = false
                 DotExist = false
             }
-
+            EqualWork = true
         }
         else { //сюда заходит при первом числе числе
             if (view.tag == "10" && NumExist == true && DotExist == false && IsNull == false)
@@ -86,7 +87,7 @@ class MainActivity : AppCompatActivity() {
                 NumExist = false
 
             }
-            else if (view.tag == "10" && DotExist == false && NumExist == true && IsNull == true){ //сюда заходит при втором числе
+            else if (view.tag == "10" && DotExist == false && NumExist == true && IsNull == true){ //сюда заходит при первом числе
                 str += "."
                 result_text.text = str
                 DotExist = true
@@ -155,7 +156,7 @@ class MainActivity : AppCompatActivity() {
 
 
         }
-        else if (view.tag == "11")
+        else if (view.tag == "11" && EqualWork == true)
         {
             SecondNum = result_text.text.toString().toDouble()
             if (Operation == 15)
@@ -194,6 +195,7 @@ class MainActivity : AppCompatActivity() {
             MultiplyExist = false
             NumExist = true
             IsNull = false
+            EqualWork = false
         }
         else if (view.tag == "16")
         {
@@ -210,6 +212,7 @@ class MainActivity : AppCompatActivity() {
             DivisionExist = false
             MultiplyExist = false
             NumExist = false
+            EqualWork = false
         }
 
 
